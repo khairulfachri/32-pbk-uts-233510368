@@ -15,6 +15,14 @@ const addItem = () => {
   }
 }
 
+const toggle = (item) => {
+  item.completed == !item.completed
+}
+
+const remove = (item) =>{
+  items.value = items.value.filter(i => i.id !== item.id)
+}
+
 </script>
 
 <template>
@@ -23,7 +31,9 @@ const addItem = () => {
 
   <ul>
     <li v-for="item in items" :key="item.id">
-      {{  item.text }}
+      <input type="checkbox" v-model="item.completed" @change="toggle(item)" />
+      {{ item.text }}
+      <button @click="remove(item)">Hapus</button>
     </li>
   </ul>
 </template>
